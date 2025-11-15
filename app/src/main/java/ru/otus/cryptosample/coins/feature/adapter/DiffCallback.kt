@@ -28,7 +28,8 @@ class DiffCallback(private val oldList: List<CoinsAdapterItem>, private  val new
             is CoinsAdapterItem.CoinItem ->
                 newItem is CoinsAdapterItem.CoinItem && oldItem.coin.id == newItem.coin.id
 
-            is CoinsAdapterItem.CoinItems -> true
+            is CoinsAdapterItem.CoinItems ->
+                newItem is CoinsAdapterItem.CoinItems && oldItem.category == newItem.category
         }
         return bool
     }

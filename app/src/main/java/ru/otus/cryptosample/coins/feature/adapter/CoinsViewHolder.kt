@@ -15,13 +15,14 @@ class CoinsViewHolder(
         binding.coinsRecyclerView.apply {
             layoutManager = LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false)
             adapter = horizontalAdapter
-            setRecycledViewPool(RecyclerView.RecycledViewPool())
             isNestedScrollingEnabled = false
         }
     }
 
-    fun bind(coins: List<CoinItem>) {
+    fun bind(coins: List<CoinItem>, pool: RecyclerView.RecycledViewPool) {
+        binding.coinsRecyclerView.setRecycledViewPool(pool)
         horizontalAdapter.setData(coins)
+
     }
 
 }

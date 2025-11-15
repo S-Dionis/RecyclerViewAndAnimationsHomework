@@ -38,7 +38,7 @@ class CoinItemAnimator(
         animator.addListener(object: AnimatorListenerAdapter() {
 
             override fun onAnimationEnd(animation: Animator) {
-                dispatchAddFinished(holder)
+                dispatchRemoveFinished(holder)
             }
 
         })

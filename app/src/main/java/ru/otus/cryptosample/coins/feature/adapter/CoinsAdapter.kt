@@ -21,16 +21,14 @@ class CoinsAdapter(private val viewPool: RecyclerView.RecycledViewPool) :
 
     private var items = listOf<CoinsAdapterItem>()
 
-    fun setData(categories: List<CoinCategoryState>) {
+    fun setData(categories: List<CoinCategoryState>, showAll: Boolean) {
         val adapterItems = mutableListOf<CoinsAdapterItem>()
 
         categories.forEach { category ->
             adapterItems.add(CoinsAdapterItem.CategoryHeader(category.name))
-            if (category.coins.size > 10) {
-                adapterItems.add(CoinsAdapterItem.CoinItems(category.coins.map {
-                    CoinsAdapterItem.CoinItem(
-                        it
-                    )
+            if (category.coins.size > 10 && showAll) {
+                adapterItems.add(CoinsAdapterItem.CoinItems(category.name, category.coins.map {
+                    CoinsAdapterItem.CoinItem(it)
                 }))
             } else {
                 category.coins.forEach { coin ->
@@ -99,7 +97,7 @@ class CoinsAdapter(private val viewPool: RecyclerView.RecycledViewPool) :
             }
 
             is CoinsAdapterItem.CoinItems -> {
-                (holder as CoinsViewHolder).bind(item.coins)
+                (holder as CoinsViewHolder).bind(item.coins, viewPool)
             }
         }
     }

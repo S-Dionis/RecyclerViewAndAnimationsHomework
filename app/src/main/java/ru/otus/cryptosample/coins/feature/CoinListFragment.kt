@@ -104,7 +104,7 @@ class CoinListFragment : Fragment() {
     }
 
     private fun renderState(state: CoinsScreenState) {
-        coinsAdapter.setData(state.categories)
+        coinsAdapter.setData(state.categories, state.showAll)
     }
 
     override fun onDestroyView() {
